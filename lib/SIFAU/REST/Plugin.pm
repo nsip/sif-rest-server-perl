@@ -43,7 +43,7 @@ register autoGet => sub {
 register autoCreate => sub {
 	my ($self, $template, $table) = plugin_args(@_);
 
-	my $raw = eval{ SIFAU::XML::Parse->parse(request->body) };
+	my $raw = eval{ SIF::XML::Parse->parse(request->body) };
 	if ($@) {
 		die "Failed to parse input XML - $@\n";
 	}
@@ -74,7 +74,7 @@ register autoCreate => sub {
 register autoUpdate => sub {
 	my ($self, $template, $table, $id) = plugin_args(@_);
 
-	my $raw = eval{ SIFAU::XML::Parse->parse(request->body) };
+	my $raw = eval{ SIF::XML::Parse->parse(request->body) };
 	if ($@) {
 		die "Failed to parse input XML - $@\n";
 	}
