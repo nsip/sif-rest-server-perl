@@ -1,10 +1,10 @@
 # Project Name
 
-XXX - SIF 3.0 REST Server using Perl Dancer
+SIF Proxy - Perl Dancer proxy to allow Javascript access to SIF REST
 
 ## Installation
 
-Requires Perl 5, Dancer, SIF::XML::Parse
+Requires Perl 5, Dancer, SIF::REST
 
 ## Usage
 
