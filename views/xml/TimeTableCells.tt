@@ -1,0 +1,5 @@
+<TimeTableCells>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/TimeTableCell.tt' %]
+	[% END %]
+</TimeTableCells>

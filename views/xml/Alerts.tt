@@ -1,0 +1,6 @@
+<alerts>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/Alert.tt' %]
+	[% END %]
+</alerts>
+

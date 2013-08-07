@@ -1,0 +1,5 @@
+<TeachingGroups>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/TeachingGroup.tt' %]
+	[% END %]
+</TeachingGroups>

@@ -1,0 +1,5 @@
+<RoomInfo RefId="[% entry.RefId %]" SchoolInfoRefId="[% entry.SchoolInfo_RefId %]">
+   <RoomNumber>[% entry.RoomNumber %]</RoomNumber>
+   <Description>[% entry.Description | html %]</Description>  
+   <Capacity>[% entry.Capacity %]</Capacity>
+</RoomInfo>

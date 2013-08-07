@@ -1,0 +1,5 @@
+<SchoolInfos>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/SchoolInfo.tt' %]
+	[% END %]
+</SchoolInfos>

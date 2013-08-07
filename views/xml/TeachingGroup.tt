@@ -1,0 +1,33 @@
+<TeachingGroup RefId="[% entry.RefId %]">
+  <SchoolYear>[% entry.SchoolYear %]</SchoolYear>
+  <SchoolInfoRefId>[% entry.SchoolInfo_RefId %]</SchoolInfoRefId>
+  <LocalId>[% entry.LocalId %]</LocalId>
+  <ShortName>[% entry.ShortName %]</ShortName>
+  <LongName>[% entry.LongName %]</LongName>
+
+  <StudentList>
+	[% FOREACH s = entry.students %]
+    <TeachingGroupStudent>
+      <StudentPersonalRefId>[% s.RefId %]</StudentPersonalRefId>
+      <Name Type="LGL">
+        <FamilyName>[% s.FamilyName %]</FamilyName>
+        <GivenName>[% s.GivenName %]</GivenName>
+      </Name>
+    </TeachingGroupStudent>
+	[% END %]
+  </StudentList>
+
+  <TeacherList>
+	[% FOREACH t = entry.teachers %]
+    <TeachingGroupTeacher>
+      <StaffPersonalRefId>[% t.RefId %]</StaffPersonalRefId>
+      <Name Type="LGL">
+        <FamilyName>[% t.FamilyName %]</FamilyName>
+        <GivenName>[% t.GivenName %]</GivenName>
+      </Name>
+      <Association>Class Teacher</Association>
+    </TeachingGroupTeacher>
+	[% END %]
+  </TeacherList>
+
+</TeachingGroup>

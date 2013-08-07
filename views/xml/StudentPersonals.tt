@@ -1,0 +1,5 @@
+<StudentPersonals>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/StudentPersonal.tt' %]
+	[% END %]
+</StudentPersonals>

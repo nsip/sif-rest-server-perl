@@ -1,0 +1,10 @@
+<TimeTableSubject RefId="[% entry.RefId %]">
+	<AcademicYear>[% entry.AcademicYear %]</AcademicYear>
+	<Faculty>[% entry.Faculty %]</Faculty>
+	[%# NOTE: Are these supposed to come from here or another Subject object %]
+	<SubjectLocalId>[% entry.SubjectLocalId %]</SubjectLocalId>
+	<SubjectShortName>[% entry.SubjectShortName %]</SubjectShortName>
+	<SubjectLongName>[% entry.SubjectLongName %]</SubjectLongName>
+	<SubjectType>[% entry.SubjectType %]</SubjectType>
+	<SchoolInfoRefId>[% entry.SchoolInfo_RefId %]</SchoolInfoRefId>
+</TimeTableSubject>

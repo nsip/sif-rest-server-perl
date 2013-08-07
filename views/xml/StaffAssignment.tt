@@ -1,0 +1,22 @@
+<StaffAssignment RefId="[% entry.RefId %]">  
+	<SchoolInfoRefId>[% entry.SchoolInfo_RefId %]</SchoolInfoRefId>  
+	<SchoolYear>[% entry.SchoolYear %]</SchoolYear>  
+	<StaffPersonalRefId>[% entry.StaffPersonal_RefId %]</StaffPersonalRefId>  
+	<Description>VCE English Teacher</Description>  
+	<PrimaryAssignment>[% entry.PrimaryAssignment %]</PrimaryAssignment>     
+	<!-- TODO - where do these come from -->
+	<StaffSubjectList>    
+	   <StaffSubject>      
+		   <PreferenceNumber>1</PreferenceNumber> 
+		  <SubjectLocalId>English</SubjectLocalId>    
+	  </StaffSubject>    
+	  <StaffSubject>  
+		 <PreferenceNumber>2</PreferenceNumber>  
+		 <SubjectLocalId>Mathematics</SubjectLocalId>    
+	  </StaffSubject>    
+	  <StaffSubject>      
+		 <PreferenceNumber>3</PreferenceNumber>      
+		 <SubjectLocalId>Science</SubjectLocalId>    
+	   </StaffSubject>  
+	</StaffSubjectList>  
+</StaffAssignment>

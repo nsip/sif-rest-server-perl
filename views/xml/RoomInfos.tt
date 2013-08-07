@@ -1,0 +1,5 @@
+<RoomInfos>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/RoomInfo.tt' %]
+	[% END %]
+</RoomInfos>

@@ -1,0 +1,9 @@
+<StaffPersonal RefId="[% entry.RefId %]">  
+	<LocalId>[% entry.LocalId %]</LocalId>  
+	<PersonInfo>
+		<Name Type="LGL">      
+			<FamilyName>[% entry.FamilyName %]</FamilyName>      
+			<GivenName>[% entry.GivenName %]</GivenName>       
+		</Name> 
+	</PersonInfo>
+</StaffPersonal>

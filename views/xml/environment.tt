@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<environment id="[% entry.RefId %]" type="DIRECT">
+	<!-- TODO need to add real data as input to create -->
+	<!-- TODO change to match new standard session key -->
+  <consumerKey>[% entry.consumerKey %]</consumerKey>
+  <sessionToken>[% entry.consumerKey %]</sessionToken>
+  <solutionId>[% entry.solutionId %]</solutionId>
+  <defaultZoneId>[% entry.defaultZoneId %]</defaultZoneId>
+  <authenticationMethod>Basic</authenticationMethod>
+  <userKey></userKey>
+  <applicationInfo>
+    <applicationKey>[% entry.applicationKey %]</applicationKey>
+    <consumerName>[% entry.consumerName %]</consumerName>
+    <supportedInfrastructureVersion>3.0</supportedInfrastructureVersion>
+    <supportedDataModel>SIF-US</supportedDataModel>
+    <supportedDataModelVersion>3.0</supportedDataModelVersion>
+    <transport>REST</transport>
+    <applicationProduct>
+      <vendorName>[% entry.vendorName %]</vendorName>
+      <productName>[% entry.productName %]</productName>
+      <productVersion>[% entry.productVersion %]</productVersion>
+    </applicationProduct>
+  </applicationInfo>
+  <infrastructureServices>
+    <infrastructureService name="environment">[% BASE %]/environments/[% entry.RefId %]</infrastructureService>
+    <infrastructureService name="requestsConnector">[% BASE %]</infrastructureService>
+  </infrastructureServices>
+  <provisionedZones>
+    <provisionedZone id="schoolTestingZone">
+      <services>
+		<!-- TODO foreach object we will support - full access -->
+[%# 
+        <service name="alerts" contextId="defaultContext">
+          <rights>
+            <right type="QUERY">APPROVED</right>
+            <right type="CREATE">APPROVED</right>
+            <right type="UPDATE">APPROVED</right>
+            <right type="DELETE">APPROVED</right>
+            <right type="PROVIDE">REJECTED</right>
+            <right type="SUBSCRIBE">SUPPORTED</right>
+            <right type="ADMIN">REJECTED</right>
+          </rights>
+        </service>
+        <service name="students" contextId="defaultContext">
+          <rights>
+            <right type="QUERY">APPROVED</right>
+            <right type="CREATE">REJECTED</right>
+            <right type="UPDATE">REJECTED</right>
+            <right type="DELETE">REJECTED</right>
+            <right type="PROVIDE">REJECTED</right>
+            <right type="SUBSCRIBE">SUPPORTED</right>
+            <right type="ADMIN">REJECTED</right>
+          </rights>
+        </service>
+        <service name="zones" contextId="defaultContext">
+          <rights>
+            <right type="QUERY">APPROVED</right>
+            <right type="CREATE">APPROVED</right>
+            <right type="UPDATE">APPROVED</right>
+            <right type="DELETE">APPROVED</right>
+            <right type="PROVIDE">REJECTED</right>
+            <right type="SUBSCRIBE">SUPPORTED</right>
+            <right type="ADMIN">REJECTED</right>
+          </rights>
+        </service>
+%]
+      </services>
+    </provisionedZone>
+  </provisionedZones>
+</environment>

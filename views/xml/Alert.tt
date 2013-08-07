@@ -1,0 +1,7 @@
+<alert id="[% entry.id %]" alertLevel="[% entry.alert %]">
+	<reporter></reporter>
+	<cause></cause>
+	<message></message>
+	<description></description>
+	<data></data>
+</alert>

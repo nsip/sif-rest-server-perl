@@ -1,0 +1,14 @@
+<StudentPersonal RefId="[% entry.RefId %]"> 
+  <LocalId>[% entry.LocalId %]</LocalId>  
+  <PersonInfo>     
+    <Name Type="LGL">       
+        <FamilyName>[% entry.FamilyName %]</FamilyName>      
+        <GivenName>[% entry.GivenName %]</GivenName>       
+     </Name> 
+   </PersonInfo>
+   <MostRecent>
+       <SchoolLocalId>[% entry.SchoolLocalId %]</SchoolLocalId>    
+       <YearLevel>[% entry.YearLevel %]</YearLevel>  
+  </MostRecent>
+</StudentPersonal> 
+

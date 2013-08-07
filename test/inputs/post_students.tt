@@ -1,0 +1,11 @@
+<sif:students xmlns:sif="http://www.sifassociation.org/datamodel/global/3.0">
+  <student>
+    <localId></localId>
+    <name nameRole="">
+      <nameOfRecord>
+        <familyName></familyName>
+        <givenName></givenName>
+      </nameOfRecord>
+    </name>
+  </student>
+</sif:students>

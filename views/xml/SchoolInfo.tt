@@ -1,0 +1,5 @@
+<SchoolInfo RefId="[% entry.RefId %]">
+	<LocalId>[% entry.LocalId %]</LocalId>  
+	<SchoolName>[% entry.SchoolName %]</SchoolName>  
+</SchoolInfo>
+

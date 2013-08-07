@@ -1,0 +1,98 @@
+<sif:student xmlns:sif="http://www.sifassociation.org/datamodel/global/3.0" refId="[% entry.RefId %]">
+    <demographics>
+        <birthDate></birthDate>
+        <birthDateVerification></birthDateVerification>
+        <citizenshipStatus></citizenshipStatus>
+        <countriesOfCitizenship>
+            <country></country>
+        </countriesOfCitizenship>
+        <countriesOfResidency>
+            <country></country>
+        </countriesOfResidency>
+        <countryArrivalDate></countryArrivalDate>
+        <countryOfBirth></countryOfBirth>
+        <dwellingArrangement></dwellingArrangement>
+        <ethnicity>
+            <ethnicity></ethnicity>
+        </ethnicity>
+        <languageList>
+            <language>
+                <code></code>
+                <dialect></dialect>
+                <languageType></languageType>
+            </language>
+        </languageList>
+        <languageProficiency></languageProficiency>
+        <maritalStatus></maritalStatus>
+        <placeOfBirth></placeOfBirth>
+        <sexus></sexus>
+        <stateProvinceOfBirth></stateProvinceOfBirth>
+        <subregionOfBirth></subregionOfBirth>
+    </demographics>
+    <electronicIdList>
+        <electronicId electronicIdType=""></electronicId>
+    </electronicIdList>
+    <emailList>
+        <email emailType=""></email>
+    </emailList>
+    <externalId authority=""></externalId>
+    <localId></localId>
+    <name nameRole="">
+        <nameOfRecord>
+            <familyName>[% entry.FamilyName %]</familyName>
+            <familyNameFirst></familyNameFirst>
+            <fullName></fullName>
+            <givenName>[% entry.GivenName %]</givenName>
+            <middleName></middleName>
+            <preferredFamilyName></preferredFamilyName>
+            <preferredFamilyNameFirst></preferredFamilyNameFirst>
+            <preferredGivenName></preferredGivenName>
+            <prefix></prefix>
+            <sortName></sortName>
+            <suffix></suffix>
+        </nameOfRecord>
+    </name>
+    <otherNames>
+        <otherName nameRole="">
+            <otherName>
+                <familyName></familyName>
+                <familyNameFirst></familyNameFirst>
+                <fullName></fullName>
+                <givenName></givenName>
+                <middleName></middleName>
+                <preferredFamilyName></preferredFamilyName>
+                <preferredFamilyNameFirst></preferredFamilyNameFirst>
+                <preferredGivenName></preferredGivenName>
+                <prefix></prefix>
+                <sortName></sortName>
+                <suffix></suffix>
+            </otherName>
+        </otherName>
+    </otherNames>
+    <phoneNumberList>
+        <phoneNumber phoneNumberType="">
+            <extension></extension>
+            <listedStatus></listedStatus>
+            <number></number>
+        </phoneNumber>
+    </phoneNumberList>
+    <otherIdList>
+        <otherId otherIdType=""></otherId>
+    </otherIdList>
+    <alertMessages>
+        <alertMessage messageType="">
+            <message></message>
+        </alertMessage>
+    </alertMessages>
+    <economicDisadvantage></economicDisadvantage>
+    <firstNationalEnrollment></firstNationalEnrollment>
+    <giftedTalented></giftedTalented>
+    <graduationDate></graduationDate>
+    <medicalAlertMessages>
+        <medicalAlertMessage severity="">
+            <message></message>
+        </medicalAlertMessage>
+    </medicalAlertMessages>
+    <onTimeGraduationYear></onTimeGraduationYear>
+    <projectedGraduationYear></projectedGraduationYear>
+</sif:student>

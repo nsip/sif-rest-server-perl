@@ -1,0 +1,8 @@
+<zone id="[% ID %]">
+	<description>[% entry.description %]</description>
+	<properties>
+		[% FOREACH p = entry.property %]
+			<property name="[% p.name %]">[% p.value %]</property>
+		[% END %]
+	</properties>
+</zone>

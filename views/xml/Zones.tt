@@ -1,0 +1,6 @@
+<zones>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/Zone.tt' %]
+	[% END %]
+</zones>
+

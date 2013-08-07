@@ -1,0 +1,5 @@
+<sif:students xmlns:sif="http://www.sifassociation.org/datamodel/global/3.0">
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/student.tt' %]
+	[% END %]
+</sif:students>

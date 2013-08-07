@@ -1,0 +1,5 @@
+<TimeTableSubjects>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/TimeTableSubject.tt' %]
+	[% END %]
+</TimeTableSubjects>
