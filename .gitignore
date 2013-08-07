@@ -1,0 +1,7 @@
+archive
+build
+.sass-cache
+*.swp
+logs
+sessions
+environments/scott.yml
