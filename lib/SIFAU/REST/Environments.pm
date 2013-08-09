@@ -35,6 +35,7 @@ post '/environment' => sub {
 		template => 'environment',
 		entry => {
 			RefId => $id,
+			# TODO rename session Token? as per XML
 			consumerKey => $key,
 		},
 	});
