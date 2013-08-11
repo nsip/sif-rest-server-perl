@@ -52,6 +52,8 @@ register autoCreate => sub {
 	}
 
 	$raw->{data}{RefId} = createRefId();
+	# NOTE: Strip "-" form GUID to support SIF 1.3 AU Spec.
+	$raw->{data}{RefId} =~ s/\-//g;
 
 	debug (join (",", sort keys %{$raw->{data}}));
 	my @data = (map { $raw->{data}{$_} } sort keys %{$raw->{data}});
