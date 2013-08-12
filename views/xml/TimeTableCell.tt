@@ -1,6 +1,6 @@
-<TimeTableICell RefId="[% entry.RefId %]">
+<TimeTableCell RefId="[% entry.RefId %]">
   <TimeTableRefId>[% entry.TimeTable_RefId %]</TimeTableRefId>
-  <TimeTableSubjectRefId>[% entry.TimeTableSubject_RefId</TimeTableSubjectRefId>
+  <TimeTableSubjectRefId>[% entry.TimeTableSubject_RefId %]</TimeTableSubjectRefId>
   <TeachingGroupRefId>[% entry.TeachingGroup_RefId %]</TeachingGroupRefId>
   <RoomInfo>[% entry.RoomInfo_RefId %]</RoomInfo>
   <CellType>[% entry.CellType %]</CellType>
