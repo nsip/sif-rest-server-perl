@@ -7,14 +7,33 @@
 
 	<h1>URLs to Try</h1>
 	<p>This assumes authentication is disabled...</p>
+
+	<h3>AU 1.3 Data Model</h3>
 	<ul>
 		<li><a href="StudentPersonals/">StudentPersonals / All</a></li>
-		<li><a href="StudentPersonals/406CA944-F9AF-11E2-9B99-FEDC5757E223">StudentPersonals / Single</a></li>
-		
 		<li><a href="RoomInfos/">RoomInfos / All</a></li>
 		<li><a href="SchoolInfos/">SchoolInfos / All</a></li>
 		<li><a href="StaffPersonals/">StaffPersonals / All</a></li>
+		<li><a href="TeachingGroups/"> TeachingGroup</a></li>
+		<li><a href="TimeTables/"> TimeTable</a></li>
+		<li><a href="TimeTableCells/"> TimeTableCell</a></li>
+		<li><a href="TimeTableSubjects/"> TimeTableSubject</a></li>
 	</ul>
+
+	<h3>Infrastructure Only</h3>
+	<ul>
+		<li><a href="alerts/">alerts</a></li>
+		<li><a href="environments/">environments</a></li>
+		<li><a href="queues/">queues</a></li>
+		<li><a href="zones/">zones</a></li>
+		<li><a href="subscriptions/"> subscriptions</a></li>
+	</ul>
+
+	<h3>US 3.0 Data Model</h3>
+	<ul>
+		<li><a href="students/"> students</a></li>
+	</ul>
+
 </body>
 </html>
 
