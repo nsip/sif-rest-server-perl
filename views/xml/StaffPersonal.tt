@@ -1,4 +1,4 @@
-<StaffPersonal RefId="[% entry.RefId %]">  
+<StaffPersonal RefId="[% entry.RefId %]" xmlns="http://www.SIFinfo.org/au/datamodel/1.3">  
 	<LocalId>[% entry.LocalId %]</LocalId>  
 	<PersonInfo>
 		<Name Type="LGL">      

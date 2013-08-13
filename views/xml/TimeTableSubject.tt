@@ -1,4 +1,4 @@
-<TimeTableSubject RefId="[% entry.RefId %]">
+<TimeTableSubject RefId="[% entry.RefId %]" xmlns="http://www.SIFinfo.org/au/datamodel/1.3">
 	<AcademicYear>[% entry.AcademicYear %]</AcademicYear>
 	<Faculty>[% entry.Faculty %]</Faculty>
 	[%# NOTE: Are these supposed to come from here or another Subject object %]

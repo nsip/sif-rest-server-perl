@@ -1,4 +1,4 @@
-<StaffAssignment RefId="[% entry.RefId %]">  
+<StaffAssignment RefId="[% entry.RefId %]" xmlns="http://www.SIFinfo.org/au/datamodel/1.3">
 	<SchoolInfoRefId>[% entry.SchoolInfo_RefId %]</SchoolInfoRefId>  
 	<SchoolYear>[% entry.SchoolYear %]</SchoolYear>  
 	<StaffPersonalRefId>[% entry.StaffPersonal_RefId %]</StaffPersonalRefId>  

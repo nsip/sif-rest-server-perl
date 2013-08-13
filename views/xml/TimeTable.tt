@@ -1,4 +1,4 @@
-<TimeTable RefId="[% entry.RefId %]">
+<TimeTable RefId="[% entry.RefId %]" xmlns="http://www.SIFinfo.org/au/datamodel/1.3">
   <SchoolYear>2009</SchoolYear>
   <LocalId>2009S1</LocalId>
   <Title>2009 Semester 1 Changed</Title>
