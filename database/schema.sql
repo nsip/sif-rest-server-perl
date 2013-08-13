@@ -1,5 +1,56 @@
 SHOW ERRORS;
 
+-- ----------------------------------------------------------------------
+-- SIF REST Infrastructure
+-- ----------------------------------------------------------------------
+-- Basic authentication
+CREATE TABLE IF NOT EXISTS consumer (
+	key varchar(100) UNIQUE,
+	secret varchar(100)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Environment details
+CREATE TABLE IF NOT EXISTS environment (
+	id varchar(36) UNIQUE,
+	consumer_key varchar(100),
+	sessionToken varchar(200),
+	zone_id varchar(36),
+	FOREIGN KEY (consumer_key) REFERENCES consumer(key)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS queue (
+	id varchar(36) UNIQUE,
+	name varchar(200),
+	environment_id varchar(36),
+	FOREIGN KEY (environment_id) REFERENCES environment(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS subscription (
+	id varchar(36) UNIQUE,
+	queue_id varchar(36),	-- Implied environment_id therefore consumer
+	zone_id varchar(36),	-- Future support zone match
+	context_id varchar(36), -- Future support context
+	serviceType varchar(36),	-- 'OBJECT'
+	serviceName varchar(36),	-- 'StudentPersonal'
+	FOREIGN KEY (environment_id) REFERENCES environment(id),
+	FOREIGN KEY (queue_id) REFERENCES queue(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS queue_data (
+	id varchar(36) UNIQUE,	-- Guarantee Order - incremement.
+	queue_id varchar(36),
+	subscription_id varchar(36),	-- To lookup zone_id etc (imples queue?)
+	event_datetime DATETIME,
+	action varchar(25),	 -- CREATE UPDATE DELETE (ENUM)
+	data TEXT,
+	FOREIGN KEY (queue_id) REFERENCES queue(id),
+	FOREIGN KEY (subscription_id) REFERENCES subscription(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------------------------------------------------
+-- SIF AU Objects
+-- ----------------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS SchoolInfo (
 	RefId varchar(36) UNIQUE,
 	LocalId varchar(200),
@@ -103,4 +154,5 @@ CREATE TABLE IF NOT EXISTS TimeTableCell (
 	FOREIGN KEY (TeachingGroup_RefId) REFERENCES TeachingGroup(RefId),
 	FOREIGN KEY (RoomInfo_RefId) REFERENCES RoomInfo(RefId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 

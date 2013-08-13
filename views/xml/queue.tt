@@ -1,0 +1,13 @@
+<!-- For full details please read the Queues section in the Documentation page in SIF-RS -->
+<queue id="" type="IMMEDIATE_POLLING | LONG_POLLING">
+  <name></name>  <!-- A friendly name that you assign to this queue to recognize its purpose -->
+  <queueUri></queueUri> <!-- The ful uri to where you can fetch the next message as described in the /queues/{id}/messages API -->
+  <idleTimeout></idleTimeout> <!-- How long the queue service will hold back returning you a response when there are no more messages -->
+  <minWaitTime></minWaitTime> <!-- Minimum amount of time that you must wait before calling Get queue message again after receiving a no more messages signal -->
+  <created></created> <!-- The date and time of the server when you created this queue -->
+  <lastModified></lastModified> <!-- The date ate and time of when the queue last received a message in it or when the last message was removed from the queue -->
+  <lastAccessed></lastAccessed> <!-- The date and time when the queue was last accessed (whether a change was made to the queue or not) -->
+  <messageCount></messageCount> <!-- The number of messages currently in the queue -->
+  <maxConcurrentConnections></maxConcurrentConnections> <!-- Used in some implementations where they desire to bypass FIFO guaranteed access. SIF-RS does not support this mode and therefore the it will always return 1 -->
+</queue>
+

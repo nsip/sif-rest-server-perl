@@ -202,6 +202,35 @@ register createRefId => sub {
 	return $guid->as_string;
 };
 
+register addQueue => sub {
+	my ($self, $opts) = plugin_args(@_);
+	
+	# TODO: Matching Zone and Context (future support)
+	
+	my $sth = database->prepare(q{
+		SELECT queue_id
+		FROM subscription
+		WHERE 
+			serviceType = 'OBJECT'
+			AND serviceName = ?
+	});
+	$sth->executre($obj->{name});
+	my $queue = $sth->fetchrow_hashref;
+	if ($queue) {
+		$sth = database->prepare(q{
+			INSERT INTO queue_data
+				(id, queue_id, data)
+				VALUES (?, ?, ?)
+		});
+		my $refid = createRefId(),
+		$sth->execute(
+			$refid, $queue->{queue_id}, $opts->{xml}
+		);
+		database->commit();
+		debug ("New queu entry $refid for " . $queue->{queue_id})
+	}
+};
+
 register_plugin;
 
 true

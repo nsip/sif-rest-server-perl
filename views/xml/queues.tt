@@ -1,0 +1,5 @@
+<queues>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/queue.tt' %]
+	[% END %]
+</queues>
