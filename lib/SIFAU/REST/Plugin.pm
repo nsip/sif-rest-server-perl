@@ -214,7 +214,7 @@ register addQueue => sub {
 			serviceType = 'OBJECT'
 			AND serviceName = ?
 	});
-	$sth->executre($obj->{name});
+	$sth->executre($opts->{name});
 	my $queue = $sth->fetchrow_hashref;
 	if ($queue) {
 		$sth = database->prepare(q{
@@ -222,7 +222,7 @@ register addQueue => sub {
 				(id, queue_id, data)
 				VALUES (?, ?, ?)
 		});
-		my $refid = createRefId(),
+		my $refid = createRefId();
 		$sth->execute(
 			$refid, $queue->{queue_id}, $opts->{xml}
 		);

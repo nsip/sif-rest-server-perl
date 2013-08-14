@@ -5,8 +5,8 @@ SHOW ERRORS;
 -- ----------------------------------------------------------------------
 -- Basic authentication
 CREATE TABLE IF NOT EXISTS consumer (
-	key varchar(100) UNIQUE,
-	secret varchar(100)
+	consumer_key varchar(100) UNIQUE,
+	consumer_secret varchar(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Environment details
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS environment (
 	consumer_key varchar(100),
 	sessionToken varchar(200),
 	zone_id varchar(36),
-	FOREIGN KEY (consumer_key) REFERENCES consumer(key)
+	FOREIGN KEY (consumer_key) REFERENCES consumer(consumer_key)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS queue (
@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS subscription (
 	context_id varchar(36), -- Future support context
 	serviceType varchar(36),	-- 'OBJECT'
 	serviceName varchar(36),	-- 'StudentPersonal'
-	FOREIGN KEY (environment_id) REFERENCES environment(id),
 	FOREIGN KEY (queue_id) REFERENCES queue(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
