@@ -1,0 +1,5 @@
+<subscriptions>
+	[% FOREACH entry = data %]
+		[% INCLUDE 'xml/subscriptions.tt' %]
+	[% END %]
+</subscriptions>

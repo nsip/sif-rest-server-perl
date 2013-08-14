@@ -58,6 +58,14 @@ register autoCreate => sub {
 	debug (join (",", sort keys %{$raw->{data}}));
 	my @data = (map { $raw->{data}{$_} } sort keys %{$raw->{data}});
 
+	# XXX Rough example
+	addQueue({
+		name => 'StudentPersonals',
+		action => 'CREATE',
+		xml => '<example>end</example>',
+	});
+	
+
 	# TODO - can we just trust all fields match DB ? (ie trust SIFAU::XML?)
 	return createSQL({
 		create => qq{
@@ -202,33 +210,36 @@ register createRefId => sub {
 	return $guid->as_string;
 };
 
+# name=StudentPersonals, action=CREATE, xml=><...>
 register addQueue => sub {
 	my ($self, $opts) = plugin_args(@_);
 	
 	# TODO: Matching Zone and Context (future support)
 	
 	my $sth = database->prepare(q{
-		SELECT queue_id
-		FROM subscription
+		SELECT 
+			id
+		FROM 
+			subscription
 		WHERE 
 			serviceType = 'OBJECT'
 			AND serviceName = ?
 	});
-	$sth->executre($opts->{name});
-	my $queue = $sth->fetchrow_hashref;
-	if ($queue) {
-		$sth = database->prepare(q{
-			INSERT INTO queue_data
-				(id, queue_id, data)
-				VALUES (?, ?, ?)
-		});
+	$sth->execute($opts->{name});
+
+	my $create_sth = database->prepare(q{
+		INSERT INTO queue_data
+			(id, subscription_id, event_datetime, action, data)
+			VALUES (?, ?, 'now', ?, ?)
+	});
+	while (my $sub = $sth->fetchrow_hashref) {
 		my $refid = createRefId();
-		$sth->execute(
-			$refid, $queue->{queue_id}, $opts->{xml}
+		$create_sth->execute(
+			$refid, $sub->{id}, $opts->{action}, $opts->{xml}
 		);
-		database->commit();
-		debug ("New queu entry $refid for " . $queue->{queue_id})
+		debug ("New queu entry $refid for " . $sub->{id});
 	}
+	database->commit();
 };
 
 register_plugin;

@@ -39,6 +39,7 @@ post '/queue' => sub {
 		template => 'queue',
 		entry => {
 			RefId => $refid,
+			name => 'test',
 		},
 	});
 };
@@ -85,14 +86,15 @@ get '/:id/messages' => sub {
 	# TODO - ISO date format
 	my $sth = database->prepare(q{
 		SELECT
-			queue_data.id as id, 
+			queue_data.id as id, queue.id as queue_id,
 			queue_data.event_datetime, queue_data.action, queue_data.data,
 			subscription.serviceName as serviceName
 		FROM
-			queue_data, subscription
+			queue_data, subscription, queue
 		WHERE
 			queue_data.subscription_id = subscription.id
-			AND queue_data.queue_id = ?
+			AND subscription.queue_id = queue.id
+			AND queue.id = ?
 		ORDER BY
 			id
 		LIMIT 1

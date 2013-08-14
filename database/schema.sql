@@ -37,12 +37,10 @@ CREATE TABLE IF NOT EXISTS subscription (
 
 CREATE TABLE IF NOT EXISTS queue_data (
 	id varchar(36) UNIQUE,	-- Guarantee Order - incremement.
-	queue_id varchar(36),
 	subscription_id varchar(36),	-- To lookup zone_id etc (imples queue?)
 	event_datetime DATETIME,
 	action varchar(25),	 -- CREATE UPDATE DELETE (ENUM)
 	data TEXT,
-	FOREIGN KEY (queue_id) REFERENCES queue(id),
 	FOREIGN KEY (subscription_id) REFERENCES subscription(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

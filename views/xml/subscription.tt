@@ -1,0 +1,7 @@
+<subscription id="[% entry.RefId %]">
+  <zoneId></zoneId>
+  <contextId></contextId>
+  <serviceType>OBJECT</serviceType>
+  <serviceName>[% entry.serviceName %]</serviceName>
+  <queueId>[% entry.queueId %]</queueId>
+</subscription>
