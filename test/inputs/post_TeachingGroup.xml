@@ -1,0 +1,31 @@
+<TeachingGroup RefId="fake01">
+  <SchoolYear>2007</SchoolYear>
+  <SchoolInfoRefId>7579d4751e0d43649432acaef3aa5746</SchoolInfoRefId>
+  <LocalId>X1</LocalId>
+  <ShortName>Shortish</ShortName>
+  <LongName>Longish</LongName>
+
+  <StudentList>
+    <TeachingGroupStudent>
+      <StudentPersonalRefId>164da5d9bcbf4cf8a058ba0b0efde9ba</StudentPersonalRefId>
+    </TeachingGroupStudent>
+    <TeachingGroupStudent>
+      <StudentPersonalRefId>3ff35abed3da4c9b88a7a1c9db28acc6</StudentPersonalRefId>
+    </TeachingGroupStudent>
+    <TeachingGroupStudent>
+      <StudentPersonalRefId>c87b60d040544235947058ff6ccfc7ed</StudentPersonalRefId>
+    </TeachingGroupStudent>
+  </StudentList>
+
+  <TeacherList>
+    <TeachingGroupTeacher>
+      <StaffPersonalRefId>E9E07EDC026B11E3A5325DE06940ABA3</StaffPersonalRefId>
+      <Name Type="LGL">
+        <FamilyName>CORR</FamilyName>
+        <GivenName>Anne</GivenName>
+      </Name>
+      <Association>Class Teacher</Association>
+    </TeachingGroupTeacher>
+  </TeacherList>
+
+</TeachingGroup>
