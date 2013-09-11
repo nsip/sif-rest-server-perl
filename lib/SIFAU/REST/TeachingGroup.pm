@@ -36,6 +36,12 @@ get '/' => sub {
 };
 
 get '/:id' => sub {
+	my $sth_find = database->prepare("SELECT * FROM TeachingGroup WHERE RefId = ?");
+	$sth_find->execute(params->{id});
+	my $old_data = $sth_find->fetchrow_hashref();
+	if (!$old_data || ($old_data->{RefId} ne params->{id})) {
+		return status_not_found("doesn't exists");
+	}
 	return returnXML({
 		status => 201,
 		template => 'TeachingGroup',
@@ -131,14 +137,14 @@ post '/TeachingGroup' => sub {
 		$sth_teacher->execute($refid, $t->{StaffPersonalRefId}{content});
 	}
 
-	my $sth_teacher = database->prepare(q{
+	my $sth_student = database->prepare(q{
 		INSERT INTO TeachingGroup_Student
 			(TeachingGroup_RefId, StudentPersonal_RefId)
 		VALUES
 			(?, ?)
 	});
 	foreach my $t ( eval { @{$data->{TeachingGroup}{StudentList}{TeachingGroupStudent}} } ) {
-		$sth_teacher->execute($refid, $t->{StudentPersonalRefId}{content});
+		$sth_student->execute($refid, $t->{StudentPersonalRefId}{content});
 	}
 
 	# TODO addQueue
@@ -160,7 +166,83 @@ put '/' => sub {
 
 # Update one
 put '/:id' => sub {
-	die "Not implemented";
+	my $sth_find = database->prepare("SELECT * FROM TeachingGroup WHERE RefId = ?");
+	$sth_find->execute(params->{id});
+	my $old_data = $sth_find->fetchrow_hashref();
+	if (!$old_data || ($old_data->{RefId} ne params->{id})) {
+		return status_not_found("doesn't exists");
+	}
+
+	my $data = xml2data(request->body);
+	info(Dumper($data));
+
+	# Fields: ShortName, LongName, SchoolInfoRefId, LocalId
+	# Groups: 
+	# 	TeacherList/TeachingGroupTeacher -> StaffPersonalRefId/content
+	# 	StudentList/TeachingGroupStudent -> StudentPersonalRefId/content
+
+	my $set = {};
+
+	if (eval { $data->{TeachingGroup}{ShortName}{content} }) {
+		$set->{"ShortName"} = $data->{TeachingGroup}{ShortName}{content};
+	}
+	if (eval { $data->{TeachingGroup}{LongName}{content} }) {
+		$set->{"LongName"} = $data->{TeachingGroup}{LongName}{content};
+	}
+	if (eval { $data->{TeachingGroup}{LocalId}{content} }) {
+		$set->{"LocalId"} = $data->{TeachingGroup}{LocalId}{content};
+	}
+	if (eval { $data->{TeachingGroup}{SchoolYear}{content} }) {
+		$set->{"SchoolYear"} = $data->{TeachingGroup}{SchoolYear}{content};
+	}
+	if (eval { $data->{TeachingGroup}{SchoolInfoRefId}{content} }) {
+		$set->{"SchoolInfo_RefId"} = $data->{TeachingGroup}{SchoolInfoRefId}{content};
+	}
+	my $sth = database->prepare(q{
+		UPDATE TeachingGroup
+			SET } . join(", ", (map { "$_ = ?" } sort keys %{$set})) . q{
+		WHERE
+			RefId = ?
+	});
+	$sth->execute( (map { $set->{$_} } sort keys %{$set}), params->{id});
+
+	debug(q{
+		UPDATE TeachingGroup
+			SET } . join(", ", (map { "$_ = ?" } sort keys %{$set})) . q{
+		WHERE
+			RefId = ?
+	});
+	debug(join(",", (map { $set->{$_} } sort keys %{$set}), params->{id}));
+
+	#my $sth_teacher = database->prepare(q{
+	#	INSERT INTO TeachingGroup_Teacher
+	#		(TeachingGroup_RefId, StaffPersonal_RefId)
+	#	VALUES
+	#		(?, ?)
+	#});
+	#foreach my $t ( eval { @{$data->{TeachingGroup}{TeacherList}{TeachingGroupTeacher}} } ) {
+	#	$sth_teacher->execute($refid, $t->{StaffPersonalRefId}{content});
+	#}
+	#my $sth_teacher = database->prepare(q{
+	#	INSERT INTO TeachingGroup_Student
+	#		(TeachingGroup_RefId, StudentPersonal_RefId)
+	#	VALUES
+	#		(?, ?)
+	#});
+	#foreach my $t ( eval { @{$data->{TeachingGroup}{StudentList}{TeachingGroupStudent}} } ) {
+	#	$sth_teacher->execute($refid, $t->{StudentPersonalRefId}{content});
+	#}
+
+	# TODO addQueue
+	#addQueue({
+	#	name => 'StudentPersonals',
+	#	action => 'CREATE',
+	#	xml => '<example>end</example>',
+	#});
+	
+	database->commit();
+
+	return forward '/TeachingGroups/' . params->{id}, { id => params->{id} }, {method => 'GET'};
 };
 
 # Delete Set
@@ -170,7 +252,18 @@ del '/' => sub {
 
 # Delete Single
 del '/:id' => sub {
-	die "Not implemented";
+	my $sth_find = database->prepare("SELECT * FROM TeachingGroup WHERE RefId = ?");
+	$sth_find->execute(params->{id});
+	my $old_data = $sth_find->fetchrow_hashref();
+	if (!$old_data || ($old_data->{RefId} ne params->{id})) {
+		return status_not_found("doesn't exists");
+	}
+
+	database->do(q{DELETE FROM TeachingGroup_Teacher WHERE TeachingGroup_RefId = ?}, undef, params->{id});
+	database->do(q{DELETE FROM TeachingGroup_Student WHERE TeachingGroup_RefId = ?}, undef, params->{id});
+	database->do(q{DELETE FROM TeachingGroup WHERE RefId = ?}, undef, params->{id});
+
+	status_ok({success => true, comment => 'deleted'});
 };
 
 true;
