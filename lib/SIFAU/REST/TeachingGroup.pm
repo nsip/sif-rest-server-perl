@@ -110,6 +110,8 @@ post '/TeachingGroup' => sub {
 	# 	StudentList/TeachingGroupStudent -> StudentPersonalRefId/content
 
 	my $refid = createRefId();
+	$refid =~ s/\-//g;
+
 	my @bind = ();
 	push @bind, $refid;
 	push @bind, eval { $data->{TeachingGroup}{ShortName}{content} } // "";
