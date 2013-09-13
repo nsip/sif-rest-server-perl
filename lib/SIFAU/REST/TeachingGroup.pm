@@ -112,6 +112,10 @@ post '/TeachingGroup' => sub {
 	my $refid = createRefId();
 	$refid =~ s/\-//g;
 
+	if (eval { $data->{TeachingGroup}{RefId} }) {
+		$refid = $data->{TeachingGroup}{RefId};
+	}
+
 	my @bind = ();
 	push @bind, $refid;
 	push @bind, eval { $data->{TeachingGroup}{ShortName}{content} } // "";
@@ -200,6 +204,9 @@ put '/:id' => sub {
 	if (eval { $data->{TeachingGroup}{SchoolInfoRefId}{content} }) {
 		$set->{"SchoolInfo_RefId"} = $data->{TeachingGroup}{SchoolInfoRefId}{content};
 	}
+
+	# XXX Replace groups
+	
 	my $sth = database->prepare(q{
 		UPDATE TeachingGroup
 			SET } . join(", ", (map { "$_ = ?" } sort keys %{$set})) . q{
@@ -216,24 +223,31 @@ put '/:id' => sub {
 	});
 	debug(join(",", (map { $set->{$_} } sort keys %{$set}), params->{id}));
 
-	#my $sth_teacher = database->prepare(q{
-	#	INSERT INTO TeachingGroup_Teacher
-	#		(TeachingGroup_RefId, StaffPersonal_RefId)
-	#	VALUES
-	#		(?, ?)
-	#});
-	#foreach my $t ( eval { @{$data->{TeachingGroup}{TeacherList}{TeachingGroupTeacher}} } ) {
-	#	$sth_teacher->execute($refid, $t->{StaffPersonalRefId}{content});
-	#}
-	#my $sth_teacher = database->prepare(q{
-	#	INSERT INTO TeachingGroup_Student
-	#		(TeachingGroup_RefId, StudentPersonal_RefId)
-	#	VALUES
-	#		(?, ?)
-	#});
-	#foreach my $t ( eval { @{$data->{TeachingGroup}{StudentList}{TeachingGroupStudent}} } ) {
-	#	$sth_teacher->execute($refid, $t->{StudentPersonalRefId}{content});
-	#}
+	if (eval { $data->{TeachingGroup}{TeacherList} }) {
+		database->do(q{DELETE FROM TeachingGroup_Teacher WHERE TeachingGroup_RefId = ?}, undef, params->{id});
+		my $sth_teacher = database->prepare(q{
+			INSERT INTO TeachingGroup_Teacher
+				(TeachingGroup_RefId, StaffPersonal_RefId)
+			VALUES
+				(?, ?)
+		});
+		foreach my $t ( eval { @{$data->{TeachingGroup}{TeacherList}{TeachingGroupTeacher}} } ) {
+			$sth_teacher->execute(params->{id}, $t->{StaffPersonalRefId}{content});
+		}
+	}
+
+	if (eval { $data->{TeachingGroup}{StudentList} }) {
+		database->do(q{DELETE FROM TeachingGroup_Student WHERE TeachingGroup_RefId = ?}, undef, params->{id});
+		my $sth_student = database->prepare(q{
+			INSERT INTO TeachingGroup_Student
+				(TeachingGroup_RefId, StudentPersonal_RefId)
+			VALUES
+				(?, ?)
+		});
+		foreach my $t ( eval { @{$data->{TeachingGroup}{StudentList}{TeachingGroupStudent}} } ) {
+			$sth_student->execute(params->{id}, $t->{StudentPersonalRefId}{content});
+		}
+	}
 
 	# TODO addQueue
 	#addQueue({

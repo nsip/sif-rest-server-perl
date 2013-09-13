@@ -51,9 +51,16 @@ register autoCreate => sub {
 		die "Input data type does not match expected - $template != $raw->{type}\n";
 	}
 
-	$raw->{data}{RefId} = createRefId();
-	# NOTE: Strip "-" form GUID to support SIF 1.3 AU Spec.
-	$raw->{data}{RefId} =~ s/\-//g;
+	# XXX Check existing RefId
+	if ($raw->{data}{RefId} && ($raw->{data}{RefId} ne "")) {
+		# Check valid format
+		# TODO: Consider Check not exists - currently will fail during insert DB checks
+	}
+	else {
+		$raw->{data}{RefId} = createRefId();
+		# NOTE: Strip "-" form GUID to support SIF 1.3 AU Spec.
+		$raw->{data}{RefId} =~ s/\-//g;
+	}
 
 	debug (join (",", sort keys %{$raw->{data}}));
 	my @data = (map { $raw->{data}{$_} } sort keys %{$raw->{data}});

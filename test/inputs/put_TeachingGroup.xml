@@ -2,4 +2,11 @@
   <SchoolYear>2013</SchoolYear>
   <ShortName>Shortish2</ShortName>
   <LongName>Longish2</LongName>
+
+  <StudentList>
+    <TeachingGroupStudent>
+      <StudentPersonalRefId>164da5d9bcbf4cf8a058ba0b0efde9ba</StudentPersonalRefId>
+    </TeachingGroupStudent>
+  </StudentList>
+
 </TeachingGroup>
