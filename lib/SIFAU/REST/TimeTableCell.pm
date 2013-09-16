@@ -10,14 +10,31 @@ prefix '/TimeTableCells';
 get '/' => sub {
 	autoGetCollection('TimeTableCells', 'TimeTableCell', q{
 		SELECT 
-			TimeTableCell.RefId, TimeTableCell.
+			TimeTableCell.RefId, TimeTableCell.TimeTableSubject_RefId,
+			TimeTableCell.TeachingGroup_RefId, TimeTableCell.RoomInfo_RefId,
+			TimeTableCell.CellType, TimeTableCell.PeriodId, TimeTableCell.DayId,
+			TimeTableCell.StaffPersonal_RefId,
+			TeachingGroup.SchoolInfo_RefId
 		FROM
-			TimeTableCell
+			TimeTableCell, TeachingGroup
+		WHERE
+			TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
 	});
 };
 
 get '/:id' => sub {
 	autoGet('TimeTableCell', 'TimeTableCell', q{
+		SELECT 
+			TimeTableCell.RefId, TimeTableCell.TimeTableSubject_RefId,
+			TimeTableCell.TeachingGroup_RefId, TimeTableCell.RoomInfo_RefId,
+			TimeTableCell.CellType, TimeTableCell.PeriodId, TimeTableCell.DayId,
+			TimeTableCell.StaffPersonal_RefId,
+			TeachingGroup.SchoolInfo_RefId
+		FROM
+			TimeTableCell, TeachingGroup
+		WHERE
+			TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
+			AND TimeTableCell.RefId = ?
 	});
 };
 

@@ -4,6 +4,8 @@
   <TeachingGroupRefId>[% entry.TeachingGroup_RefId %]</TeachingGroupRefId>
   <RoomInfo>[% entry.RoomInfo_RefId %]</RoomInfo>
   <CellType>[% entry.CellType %]</CellType>
-  <PeriodID>[% entry.PeriodId %]</PeriodID>
-  <DayID>[% entry.DayId %]</DayID>
+  <PeriodId>[% entry.PeriodId %]</PeriodId>
+  <DayId>[% entry.DayId %]</DayId>
+  <SchoolInfoRefId>[% entry.SchoolInfo_RefId %]</SchoolInfoRefId>
+  <StaffPersonalRefId>[% entry.StaffPersonal_RefId %]</StaffPersonalRefId>
 </TimeTableCell>
