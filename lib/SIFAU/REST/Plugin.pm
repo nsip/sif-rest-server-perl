@@ -15,9 +15,9 @@ TODO
 
 # TODO - Support filters
 register autoGetCollection => sub {
-	my ($self, $template, $table) = plugin_args(@_);
+	my ($self, $template, $table, $sql) = plugin_args(@_);
 	return getSQLCollection({
-		sql => qq{
+		sql => $sql // qq{
 			SELECT *
 			FROM $table
 			ORDER BY RefId
@@ -27,9 +27,9 @@ register autoGetCollection => sub {
 };
 
 register autoGet => sub {
-	my ($self, $template, $table) = plugin_args(@_);
+	my ($self, $template, $table, $sql) = plugin_args(@_);
 	return getSQL({
-		sql => qq{
+		sql => $sql // qq{
 			SELECT *
 			FROM $table
 			WHERE RefId = ?
@@ -72,19 +72,15 @@ register autoCreate => sub {
 		xml => '<example>end</example>',
 	});
 	
-
-	# TODO - can we just trust all fields match DB ? (ie trust SIFAU::XML?)
-	return createSQL({
-		create => qq{
-			INSERT INTO $table
-				(} . join(',', sort keys %{$raw->{data}}) . qq{)
-			VALUES 
-				(} . join(',', map { '?' } keys %{$raw->{data}}) . qq{)
-		},
-		bind => \@data,
-		entry => $raw->{data},
-		template => $template,
+	my $sth = database->prepare(qq{
+		INSERT INTO $table
+			(} . join(',', sort keys %{$raw->{data}}) . qq{)
+		VALUES 
+			(} . join(',', map { '?' } keys %{$raw->{data}}) . qq{)
 	});
+	$sth->execute( @data );
+
+	return forward '/' . $table . 's/' . $raw->{data}{RefId}, { id => $raw->{data}{RefId} }, {method => 'GET'};
 };
 
 # TODO - auto support multiple !
@@ -110,16 +106,14 @@ register autoUpdate => sub {
 
 	# TODO Return value may be wrong... might need to do a separate updateSQL
 	push @value, $id;
-	return createSQL({
-		create => qq{
-			UPDATE $table
-			SET } . join(",", @set) . qq{
-			WHERE RefId = ?
-		},
-		bind => \@value,
-		entry => $raw->{data},
-		template => $template,
+
+	my $sth = database->prepare(qq{
+		UPDATE $table
+		SET } . join(",", @set) . qq{
+		WHERE RefId = ?
 	});
+	$sth->execute( @value );
+	return forward '/' . $table . 's/' . $id, { id => $id }, {method => 'GET'};
 };
 
 # TODO - auto support multiple !

@@ -8,11 +8,17 @@ our $VERSION = '0.1';
 prefix '/TimeTableCells';
 
 get '/' => sub {
-	autoGetCollection('TimeTableCells', 'TimeTableCell');
+	autoGetCollection('TimeTableCells', 'TimeTableCell', q{
+		SELECT 
+			TimeTableCell.RefId, TimeTableCell.
+		FROM
+			TimeTableCell
+	});
 };
 
 get '/:id' => sub {
-	autoGet('TimeTableCell', 'TimeTableCell');
+	autoGet('TimeTableCell', 'TimeTableCell', q{
+	});
 };
 
 # CREATE Multiple

@@ -146,10 +146,12 @@ CREATE TABLE IF NOT EXISTS TimeTableCell (
 	CellType varchar(200),
 	PeriodId varchar(200),
 	DayId varchar(200),
+	StaffPersonal_RefId varchar(36),
 	FOREIGN KEY (TimeTable_RefId) REFERENCES TimeTable(RefId),
 	FOREIGN KEY (TimeTableSubject_RefId) REFERENCES TimeTableSubject(RefId),
 	FOREIGN KEY (TeachingGroup_RefId) REFERENCES TeachingGroup(RefId),
-	FOREIGN KEY (RoomInfo_RefId) REFERENCES RoomInfo(RefId)
+	FOREIGN KEY (RoomInfo_RefId) REFERENCES RoomInfo(RefId),
+	FOREIGN KEY (StaffPersonal_RefId) REFERENCES StaffPersonal(RefId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
