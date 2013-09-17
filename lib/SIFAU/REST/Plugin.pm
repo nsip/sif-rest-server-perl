@@ -98,8 +98,11 @@ register autoUpdate => sub {
 	my @set = ();
 	my @value = ();
 	foreach my $key (keys %{$raw->{data}}) {
-		push @set, "$key = ?";
-		push @value, $raw->{data}{$key};
+		next if ($key eq 'RefId');
+		if ($raw->{data}{$key}) {
+			push @set, "$key = ?";
+			push @value, $raw->{data}{$key};
+		}
 	}
 
 	$raw->{data}{RefId} = $id;
@@ -107,6 +110,12 @@ register autoUpdate => sub {
 	# TODO Return value may be wrong... might need to do a separate updateSQL
 	push @value, $id;
 
+	info(qq{
+		UPDATE $table
+		SET } . join(",", @set) . qq{
+		WHERE RefId = ?
+	});
+	info(join(',', @value));
 	my $sth = database->prepare(qq{
 		UPDATE $table
 		SET } . join(",", @set) . qq{

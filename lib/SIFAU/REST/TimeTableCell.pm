@@ -14,11 +14,13 @@ get '/' => sub {
 			TimeTableCell.TeachingGroup_RefId, TimeTableCell.RoomInfo_RefId,
 			TimeTableCell.CellType, TimeTableCell.PeriodId, TimeTableCell.DayId,
 			TimeTableCell.StaffPersonal_RefId,
-			TeachingGroup.SchoolInfo_RefId
+			TeachingGroup.SchoolInfo_RefId,
+			RoomInfo.RoomNumber
 		FROM
-			TimeTableCell, TeachingGroup
+			TimeTableCell, TeachingGroup, RoomInfo
 		WHERE
 			TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
+			AND TimeTableCell.RoomInfo_RefId = RoomInfo.RefId
 	});
 };
 
@@ -29,11 +31,13 @@ get '/:id' => sub {
 			TimeTableCell.TeachingGroup_RefId, TimeTableCell.RoomInfo_RefId,
 			TimeTableCell.CellType, TimeTableCell.PeriodId, TimeTableCell.DayId,
 			TimeTableCell.StaffPersonal_RefId,
-			TeachingGroup.SchoolInfo_RefId
+			TeachingGroup.SchoolInfo_RefId,
+			RoomInfo.RoomNumber
 		FROM
-			TimeTableCell, TeachingGroup
+			TimeTableCell, TeachingGroup, RoomInfo
 		WHERE
 			TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
+			AND TimeTableCell.RoomInfo_RefId = RoomInfo.RefId
 			AND TimeTableCell.RefId = ?
 	});
 };

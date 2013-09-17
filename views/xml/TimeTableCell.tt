@@ -2,7 +2,8 @@
   <TimeTableRefId>[% entry.TimeTable_RefId %]</TimeTableRefId>
   <TimeTableSubjectRefId>[% entry.TimeTableSubject_RefId %]</TimeTableSubjectRefId>
   <TeachingGroupRefId>[% entry.TeachingGroup_RefId %]</TeachingGroupRefId>
-  <RoomInfo>[% entry.RoomInfo_RefId %]</RoomInfo>
+  <RoomInfoRefId>[% entry.RoomInfo_RefId %]</RoomInfoRefId>
+  <RoomNumber>[% entry.RoomNumber %]</RoomNumber>
   <CellType>[% entry.CellType %]</CellType>
   <PeriodId>[% entry.PeriodId %]</PeriodId>
   <DayId>[% entry.DayId %]</DayId>
