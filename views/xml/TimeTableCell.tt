@@ -9,4 +9,5 @@
   <DayId>[% entry.DayId %]</DayId>
   <SchoolInfoRefId>[% entry.SchoolInfo_RefId %]</SchoolInfoRefId>
   <StaffPersonalRefId>[% entry.StaffPersonal_RefId %]</StaffPersonalRefId>
+  <StaffLocalId>[% entry.StaffLocalId %]</StaffLocalId>
 </TimeTableCell>
