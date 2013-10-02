@@ -133,8 +133,27 @@ CREATE TABLE IF NOT EXISTS TeachingGroup_Teacher (
 CREATE TABLE IF NOT EXISTS TimeTable (
 	RefId varchar(36) UNIQUE,
 	SchoolInfo_RefId varchar(36),
-	RAWDATA TEXT,
+	SchoolYear varchar(200),
+	LocalId varchar(200),
+	Title varchar(200),
+	DaysPerCycle varchar(200),
+	PeriodsPerCycle varchar(200),
 	FOREIGN KEY (SchoolInfo_RefId) REFERENCES SchoolInfo(RefId)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS TimeTable_Day (
+	TimeTable_RefId varchar(36) NOT NULL,
+	DayId varchar(200) NOT NULL,
+	DayTitle varchar(200) NOT NULL,
+	FOREIGN KEY (TimeTable_RefId) REFERENCES TimeTable(RefId)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS TimeTable_Period (
+	TimeTable_RefId varchar(36) NOT NULL,
+	DayId varchar(200) NOT NULL,
+	PeriodId varchar(200) NOT NULL,
+	PeriodTitle varchar(200) NOT NULL,
+	FOREIGN KEY (TimeTable_RefId) REFERENCES TimeTable(RefId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS TimeTableCell (
