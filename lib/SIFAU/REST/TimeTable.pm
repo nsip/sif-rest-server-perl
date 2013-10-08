@@ -148,7 +148,7 @@ post '/TimeTable' => sub {
 	});
 
 	foreach my $d ( eval { @{$data->{TimeTable}{TimeTableDayList}{TimeTableDay}} } ) {
-		$sth_day->execute($refid, $d->{DayId}{content});
+		$sth_day->execute($refid, $d->{DayId}{content}, $d->{DayTitle}{content});
 		for my $p ( eval { @{$d->{TimeTablePeriodList}{TimeTablePeriod}} } ) {
 			$sth_period->execute(
 				$refid, $d->{DayId}{content},
