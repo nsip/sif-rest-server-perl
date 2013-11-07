@@ -1,160 +1,24 @@
 <TimeTable RefId="[% entry.RefId %]" xmlns="http://www.SIFinfo.org/au/datamodel/1.3">
-  <SchoolYear>2009</SchoolYear>
-  <LocalId>2009S1</LocalId>
-  <Title>2009 Semester 1 Changed</Title>
-  <DaysPerCycle>5</DaysPerCycle>
-  <PeriodsPerCycle>6</PeriodsPerCycle>
-  <SchoolLocalId>01888101</SchoolLocalId>
+  <SchoolYear>[% entry.SchoolYear %]</SchoolYear>
+  <LocalId>[% entry.LocalId %]</LocalId>
+  <Title>[% entry.Title %]</Title>
+  <DaysPerCycle>[% entry.DaysPerCycle %]</DaysPerCycle>
+  <PeriodsPerCycle>[% entry.PeriodsPerCycle %]</PeriodsPerCycle>
+  <SchoolInfoRefId>[% entry.SchoolInfo_RefId %]</SchoolInfoRefId>
   <TimeTableDayList>
+	[% FOREACH day = entry.TimeTableDay %]
     <TimeTableDay>
-      <DayID>1</DayID>
-      <DayTitle>Monday</DayTitle>
+      <DayID>[% day.DayId %]</DayID>
+      <DayTitle>[% day.DayTitle %]</DayTitle>
       <TimeTablePeriodList>
+		[% FOREACH period = day.Period %]
         <TimeTablePeriod>
-          <PeriodID>1</PeriodID>
-          <PeriodTitle>P1</PeriodTitle>
+          <PeriodID>[% period.PeriodId %]</PeriodID>
+          <PeriodTitle>[% period.PeriodTitle %]</PeriodTitle>
         </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>2</PeriodID>
-          <PeriodTitle>P2</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>3</PeriodID>
-          <PeriodTitle>P3</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>4</PeriodID>
-          <PeriodTitle>P4</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>5</PeriodID>
-          <PeriodTitle>P5</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>6</PeriodID>
-          <PeriodTitle>P6</PeriodTitle>
-        </TimeTablePeriod>
+		[% END %]
       </TimeTablePeriodList>
     </TimeTableDay>
-    <TimeTableDay>
-      <DayID>2</DayID>
-      <DayTitle>Tuesday</DayTitle>
-      <TimeTablePeriodList>
-        <TimeTablePeriod>
-          <PeriodID>1</PeriodID>
-          <PeriodTitle>P1</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>2</PeriodID>
-          <PeriodTitle>P2</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>3</PeriodID>
-          <PeriodTitle>P3</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>4</PeriodID>
-          <PeriodTitle>P4</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>5</PeriodID>
-          <PeriodTitle>P5</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>6</PeriodID>
-          <PeriodTitle>P6</PeriodTitle>
-        </TimeTablePeriod>
-      </TimeTablePeriodList>
-    </TimeTableDay>
-    <TimeTableDay>
-      <DayID>3</DayID>
-      <DayTitle>Wednesday</DayTitle>
-      <TimeTablePeriodList>
-        <TimeTablePeriod>
-          <PeriodID>1</PeriodID>
-          <PeriodTitle>P1</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>2</PeriodID>
-          <PeriodTitle>P2</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>3</PeriodID>
-          <PeriodTitle>P3</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>4</PeriodID>
-          <PeriodTitle>P4</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>5</PeriodID>
-          <PeriodTitle>P5</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>6</PeriodID>
-          <PeriodTitle>P6</PeriodTitle>
-        </TimeTablePeriod>
-      </TimeTablePeriodList>
-    </TimeTableDay>
-    <TimeTableDay>
-      <DayID>4</DayID>
-      <DayTitle>Thursday</DayTitle>
-      <TimeTablePeriodList>
-        <TimeTablePeriod>
-          <PeriodID>1</PeriodID>
-          <PeriodTitle>P1</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>2</PeriodID>
-          <PeriodTitle>P2</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>3</PeriodID>
-          <PeriodTitle>P3</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>4</PeriodID>
-          <PeriodTitle>P4</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>5</PeriodID>
-          <PeriodTitle>P5</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>6</PeriodID>
-          <PeriodTitle>P6</PeriodTitle>
-        </TimeTablePeriod>
-      </TimeTablePeriodList>
-    </TimeTableDay>
-    <TimeTableDay>
-      <DayID>5</DayID>
-      <DayTitle>Friday</DayTitle>
-      <TimeTablePeriodList>
-        <TimeTablePeriod>
-          <PeriodID>1</PeriodID>
-          <PeriodTitle>P1</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>2</PeriodID>
-          <PeriodTitle>P2</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>3</PeriodID>
-          <PeriodTitle>P3</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>4</PeriodID>
-          <PeriodTitle>P4</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>5</PeriodID>
-          <PeriodTitle>P5</PeriodTitle>
-        </TimeTablePeriod>
-        <TimeTablePeriod>
-          <PeriodID>6</PeriodID>
-          <PeriodTitle>P6</PeriodTitle>
-        </TimeTablePeriod>
-      </TimeTablePeriodList>
-    </TimeTableDay>
+	[% END %]
   </TimeTableDayList>
 </TimeTable>
