@@ -207,21 +207,27 @@ put '/:id' => sub {
 
 	# XXX Replace groups
 	
-	my $sth = database->prepare(q{
-		UPDATE TeachingGroup
-			SET } . join(", ", (map { "$_ = ?" } sort keys %{$set})) . q{
-		WHERE
-			RefId = ?
-	});
-	$sth->execute( (map { $set->{$_} } sort keys %{$set}), params->{id});
 
-	debug(q{
-		UPDATE TeachingGroup
-			SET } . join(", ", (map { "$_ = ?" } sort keys %{$set})) . q{
-		WHERE
-			RefId = ?
-	});
-	debug(join(",", (map { $set->{$_} } sort keys %{$set}), params->{id}));
+	if ( scalar( keys %$set ) > 0 ) {
+		debug(q{
+			UPDATE TeachingGroup
+				SET } . join(", ", (map { "$_ = ?" } sort keys %{$set})) . q{
+			WHERE
+				RefId = ?
+		});
+		debug(join(",", (map { $set->{$_} } sort keys %{$set}), params->{id}));
+
+		my $sth = database->prepare(q{
+			UPDATE TeachingGroup
+				SET } . join(", ", (map { "$_ = ?" } sort keys %{$set})) . q{
+			WHERE
+				RefId = ?
+		});
+		$sth->execute( (map { $set->{$_} } sort keys %{$set}), params->{id});
+	}
+	else {
+		debug("No data to update");
+	}
 
 	if (eval { $data->{TeachingGroup}{TeacherList} }) {
 		database->do(q{DELETE FROM TeachingGroup_Teacher WHERE TeachingGroup_RefId = ?}, undef, params->{id});
