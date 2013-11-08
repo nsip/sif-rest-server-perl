@@ -18,7 +18,10 @@ get '/' => sub {
 			RoomInfo.RoomNumber,
 			StaffPersonal.LocalId as StaffLocalId
 		FROM
-			TimeTableCell, TeachingGroup, RoomInfo, StaffPersonal
+			(TimeTableCell
+			LEFT JOIN TeachingGroup ON TeachingGroup_RefId = TimeTableCell.TeachingGroup_RefId
+
+, RoomInfo, StaffPersonal
 		WHERE
 			TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
 			AND TimeTableCell.RoomInfo_RefId = RoomInfo.RefId

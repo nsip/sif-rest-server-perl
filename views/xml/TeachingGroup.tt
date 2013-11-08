@@ -1,17 +1,17 @@
 <TeachingGroup RefId="[% entry.RefId %]" xmlns="http://www.SIFinfo.org/au/datamodel/1.3">
-  <SchoolYear>[% entry.SchoolYear %]</SchoolYear>
+  <SchoolYear>[% entry.SchoolYear | html %]</SchoolYear>
   <SchoolInfoRefId>[% entry.SchoolInfo_RefId %]</SchoolInfoRefId>
-  <LocalId>[% entry.LocalId %]</LocalId>
-  <ShortName>[% entry.ShortName %]</ShortName>
-  <LongName>[% entry.LongName %]</LongName>
+  <LocalId>[% entry.LocalId | html %]</LocalId>
+  <ShortName>[% entry.ShortName | html %]</ShortName>
+  <LongName>[% entry.LongName | html %]</LongName>
 
   <StudentList>
 	[% FOREACH s = entry.students %]
     <TeachingGroupStudent>
       <StudentPersonalRefId>[% s.RefId %]</StudentPersonalRefId>
       <Name Type="LGL">
-        <FamilyName>[% s.FamilyName %]</FamilyName>
-        <GivenName>[% s.GivenName %]</GivenName>
+        <FamilyName>[% s.FamilyName | html %]</FamilyName>
+        <GivenName>[% s.GivenName | html %]</GivenName>
       </Name>
     </TeachingGroupStudent>
 	[% END %]
@@ -22,8 +22,8 @@
     <TeachingGroupTeacher>
       <StaffPersonalRefId>[% t.RefId %]</StaffPersonalRefId>
       <Name Type="LGL">
-        <FamilyName>[% t.FamilyName %]</FamilyName>
-        <GivenName>[% t.GivenName %]</GivenName>
+        <FamilyName>[% t.FamilyName | html %]</FamilyName>
+        <GivenName>[% t.GivenName | html %]</GivenName>
       </Name>
       <Association>Class Teacher</Association>
     </TeachingGroupTeacher>
