@@ -9,39 +9,39 @@ prefix '/TimeTableCells';
 
 get '/' => sub {
 	autoGetCollection('TimeTableCells', 'TimeTableCell', q{
-			SELECT
-					TimeTableCell.RefId, TimeTableCell.TimeTableSubject_RefId,
-					TimeTableCell.TeachingGroup_RefId, TimeTableCell.RoomInfo_RefId,
-					TimeTableCell.CellType, TimeTableCell.PeriodId, TimeTableCell.DayId,
-					TimeTableCell.StaffPersonal_RefId,
-					TeachingGroup.SchoolInfo_RefId,
-					RoomInfo.RoomNumber,
-					StaffPersonal.LocalId as StaffLocalId
-			FROM
-					TimeTableCell
-					LEFT JOIN TeachingGroup ON TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
-					LEFT JOIN RoomInfo ON TimeTableCell.RoomInfo_RefId = RoomInfo.RefId
-					LEFT JOIN StaffPersonal ON TimeTableCell.StaffPersonal_RefId = StaffPersonal.RefId
+		SELECT
+			TimeTableCell.RefId, TimeTableCell.TimeTableSubject_RefId,
+			TimeTableCell.TeachingGroup_RefId, TimeTableCell.RoomInfo_RefId,
+			TimeTableCell.CellType, TimeTableCell.PeriodId, TimeTableCell.DayId,
+			TimeTableCell.StaffPersonal_RefId,
+			TeachingGroup.SchoolInfo_RefId,
+			RoomInfo.RoomNumber,
+			StaffPersonal.LocalId as StaffLocalId
+		FROM
+			TimeTableCell
+			LEFT JOIN TeachingGroup ON TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
+			LEFT JOIN RoomInfo ON TimeTableCell.RoomInfo_RefId = RoomInfo.RefId
+			LEFT JOIN StaffPersonal ON TimeTableCell.StaffPersonal_RefId = StaffPersonal.RefId
 	});
 };
 
 get '/:id' => sub {
 	autoGet('TimeTableCell', 'TimeTableCell', q{
-                SELECT
-                        TimeTableCell.RefId, TimeTableCell.TimeTableSubject_RefId,
-                        TimeTableCell.TeachingGroup_RefId, TimeTableCell.RoomInfo_RefId,
-                        TimeTableCell.CellType, TimeTableCell.PeriodId, TimeTableCell.DayId,
-                        TimeTableCell.StaffPersonal_RefId,
-                        TeachingGroup.SchoolInfo_RefId,
-                        RoomInfo.RoomNumber,
-                        StaffPersonal.LocalId as StaffLocalId
-                FROM
-                        TimeTableCell
-                        LEFT JOIN TeachingGroup ON TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
-                        LEFT JOIN RoomInfo ON TimeTableCell.RoomInfo_RefId = RoomInfo.RefId
-                        LEFT JOIN StaffPersonal ON TimeTableCell.StaffPersonal_RefId = StaffPersonal.RefId
-				WHERE
-					TimeTableCell.RefId = ?
+		SELECT
+			TimeTableCell.RefId, TimeTableCell.TimeTableSubject_RefId,
+			TimeTableCell.TeachingGroup_RefId, TimeTableCell.RoomInfo_RefId,
+			TimeTableCell.CellType, TimeTableCell.PeriodId, TimeTableCell.DayId,
+			TimeTableCell.StaffPersonal_RefId,
+			TeachingGroup.SchoolInfo_RefId,
+			RoomInfo.RoomNumber,
+			StaffPersonal.LocalId as StaffLocalId
+		FROM
+			TimeTableCell
+			LEFT JOIN TeachingGroup ON TimeTableCell.TeachingGroup_RefId = TeachingGroup.RefId
+			LEFT JOIN RoomInfo ON TimeTableCell.RoomInfo_RefId = RoomInfo.RefId
+			LEFT JOIN StaffPersonal ON TimeTableCell.StaffPersonal_RefId = StaffPersonal.RefId
+		WHERE
+			TimeTableCell.RefId = ?
 	});
 };
 
